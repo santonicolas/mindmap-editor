@@ -1,0 +1,105 @@
+dialog::backdrop {
+    background: hsl(0, 0%, 14%, 0.30);
+}
+
+dialog {
+    background-color: var(--neutra);
+    min-width: 525px;
+    margin: 16vh auto 0 auto;
+    padding: 24px;
+    border-radius: 24px;
+    border: none;
+}
+
+dialog .head {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+dialog .head #msg {
+    background-color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--green1);
+    color: var(--green2);
+}
+
+dialog .head button {
+    background-color: #2e2e2e;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+
+dialog textarea {
+    width: 100%;
+    font-size: 14px;
+    padding: 20px 16px;
+    resize: none;
+    line-height: 20px;
+    color: var(--neutra7);
+    min-height: 377px;
+    outline: none;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
+    border: none;
+    background-color: var(--neutra);
+}
+
+dialog .row {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    width: 100%;
+    align-self: center;
+    gap: 10px;
+    justify-content: end;
+}
+
+dialog .row button {
+    padding: 8px 18px;
+    border-radius: 10px;
+    background-color: var(--neutra1);
+    border: 1px solid var(--neutra1);
+    font-weight: 500;
+    color: var(--neutra5);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+
+dialog .row button:hover {
+    background-color: var(--neutra2);
+}
+
+dialog .row button:active {
+    background-color: var(--neutra3);
+}
+
+
+dialog .row button#bLoad {
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+    color: var(--neutra);
+}
+dialog .row button#bLoad:hover {
+    background-color: var(--blue1);
+}
+dialog .row button#bLoad:active {
+    background-color: var(--blue2);
+}

@@ -1,0 +1,67 @@
+#bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 12px;
+    overflow-x: auto;
+    flex: none;
+}
+
+#bar .sp {
+    flex: 1
+}
+
+/* button normal */
+#bar button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 21px;
+    gap: 8px;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: var(--neutra1);
+    color: var(--neutra5);
+    border: 1px solid var(--neutra1);
+}
+
+#bar button img {
+    filter: var(--svg);
+}
+
+button::selection {
+    background: none;
+}
+
+#bar button:hover {
+    background-color: var(--neutra2);
+}
+
+#bar button:active {
+    background-color: var(--neutra3);
+}
+
+/* button primario */
+#bar button.pri {
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+}
+
+#bar button.pri:hover {
+    background-color: var(--blue1);
+}
+
+#bar button.pri:active {
+    background-color: var(--blue2);
+}
+
+#bar #theme-toggle, #bar #bJson, #bar #bPdf {
+    padding: 10px;
+}
+
+#bar #bNew {
+    gap: 6px;
+}

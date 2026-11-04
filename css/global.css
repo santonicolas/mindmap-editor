@@ -1,0 +1,23 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-synthesis: none;
+}
+
+html {
+    scroll-padding-top: env(safe-area-inset-top, 0px)
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    background-color: var(--neutra);
+    flex-direction: column;
+}
