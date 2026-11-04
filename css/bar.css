@@ -50,6 +50,10 @@ button::selection {
     border: 1px solid var(--blue);
 }
 
+#bar button.pri img {
+    filter: unset;
+}
+
 #bar button.pri:hover {
     background-color: var(--blue1);
 }

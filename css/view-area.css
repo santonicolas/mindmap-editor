@@ -81,6 +81,6 @@
 
 .node:empty::before {
     content: "Novo tópico";
-    color: var(--neutra3);
+    color: var(--neutra2);
     opacity: 1;
 }
