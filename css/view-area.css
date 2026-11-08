@@ -61,31 +61,64 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    transition: box-shadow 0.14s, border-color 0.14s, background-color 0.14s;
 }
 
+.node:hover {
+    background-color: hsl(0, 0%, 100%, 0.05);
+    box-shadow: 0 0 0 2px hsl(0, 0%, 100%, 0.25);
+}
+
+/* NODE SELECIONADO  */
 .node.sel {
-    border: 2px solid #0080F7;
+    border-color: #0080F7;
+    background-color: hsl(209, 92%, 58%, 0.05);
 }
 
+/* NODE SELECIONADO HOVER*/
+.node.sel:hover {
+    box-shadow: 0 0 0 2px hsl(209, 92%, 58%, 0.3);
+    border-color: #0080F7;
+}
+
+/* NODE EDITANDO */
 .node.ed {
     user-select: text;
     cursor: text;
     outline: none;
+    box-shadow: 0 0 0 2px hsl(209, 92%, 58%, 0.3);
+    background-color: hsl(209, 92%, 58%, 0.05);
 }
 
+/* selecao do texto do node */
 .node.ed::selection {
-    background-color: hsl(209, 100%, 48%, 0.2);
+    background-color: hsl(209, 100%, 88%, 0.2);
 }
 
+/* node vazio */
+.node:empty {
+    border-color: hsl(0, 0%, 25%);
+}
+
+/* hover no node vazio */
+.node:empty:hover {
+    box-shadow: 0 0 0 2px hsl(0, 0%, 25%, 0.6);
+    background-color: hsl(0, 0%, 25%, 0.15);
+}
+
+/* "placeholder" do node quando vazio */
 .node:empty::before {
     content: "Novo tópico";
     color: #595959;
 }
 
-.node:empty {
-    border-color: #404040;
-}
-
+/* ao selecionar um node vazio */
 .node.sel:empty {
     border-color: #0080F7;
+}
+
+/* hover ao selecionar um node vazio */
+.node.sel:empty:hover {
+    box-shadow: 0 0 0 2px hsl(209, 92%, 58%, 0.3);
+    background-color: hsl(209, 92%, 58%, 0.05);
 }

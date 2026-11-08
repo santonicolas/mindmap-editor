@@ -21,3 +21,7 @@ body {
     background-color: #1E1E1E;
     flex-direction: column;
 }
+
+button {
+    transition: background-color 0.14s, border-color 0.14s;
+}
