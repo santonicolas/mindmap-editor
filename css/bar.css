@@ -1,35 +1,45 @@
 #bar {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 12px;
-    overflow-x: auto;
-    flex: none;
+    border-radius: 12px;
+    gap: 54px;
+    align-items: center;
+    overflow: hidden;
+
+    background-color: hsla(0, 0%, 14%, 0.5);
+    border: 1px solid hsla(0, 0%, 18%, 0.5);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99999;
 }
 
-#bar .sp {
-    flex: 1
-}
-
-/* button normal */
 #bar button {
     display: flex;
     align-items: center;
     font-size: 14px;
-    line-height: 21px;
+    font-weight: 300;
+    line-height: 20px;
     gap: 8px;
-    font-weight: 500;
     border-radius: 8px;
     padding: 10px 14px;
     cursor: pointer;
     white-space: nowrap;
-    background-color: var(--neutra1);
-    color: var(--neutra5);
-    border: 1px solid var(--neutra1);
+    background-color: hsl(0, 0%, 18%, 0.5);
+    border: 1px solid hsl(0, 0%, 18%, 0.5);
+    color: #ffffff;
 }
 
 #bar button img {
-    filter: var(--svg);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 button::selection {
@@ -37,35 +47,57 @@ button::selection {
 }
 
 #bar button:hover {
-    background-color: var(--neutra2);
+    background-color: hsl(0, 0%, 18%, 0.75);
+    border-color: hsl(0, 0%, 18%, 0.75);
 }
 
 #bar button:active {
-    background-color: var(--neutra3);
+    background-color: hsl(0, 0%, 12%, 0.75);
+    border-color: hsl(0, 0%, 12%, 0.75);
+}
+
+
+.bar-right {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
 }
 
 /* button primario */
 #bar button.pri {
-    background-color: var(--blue);
-    border: 1px solid var(--blue);
-}
-
-#bar button.pri img {
-    filter: unset;
+    background-color: hsl(209, 100%, 50%, 0.5);
+    border: 1px solid hsl(209, 100%, 50%, 0.5);
 }
 
 #bar button.pri:hover {
-    background-color: var(--blue1);
+    background-color: hsl(209, 100%, 50%, 0.75);
+    border-color: hsl(209, 100%, 50%, 0.75);
 }
 
 #bar button.pri:active {
-    background-color: var(--blue2);
+    background-color: hsl(209, 100%, 28%, 0.75);
+    border-color: hsl(209, 100%, 28%, 0.75);
 }
 
-#bar #theme-toggle, #bar #bJson, #bar #bPdf {
+#bar #bJson, #bar #bPdf {
     padding: 10px;
 }
 
 #bar #bNew {
+    background-color: hsl(0, 47%, 12%, 0.5);
+    border: 1px solid hsl(359, 50%, 33%, 0.5);
+    color: #F53D41;
+    font-weight: 400;
     gap: 6px;
+}
+
+#bar #bNew:hover {
+    background-color: hsl(0, 47%, 12%, 0.75);
+    border-color: hsl(359, 50%, 43%, 0.75);
+}
+
+#bar #bNew:active {
+    background-color: hsl(0, 47%, 8%, 0.75);
+    border-color: hsl(359, 50%, 28%, 0.75);
 }

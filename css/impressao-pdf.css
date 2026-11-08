@@ -9,7 +9,7 @@
     body {
         display: block;
         height: auto;
-        background: #fff;
+        background: #1E1E1E;
     }
 
     #bar,
@@ -23,28 +23,19 @@
     #view {
         flex: none;
         overflow: hidden;
-        margin: 0;
-        border: 0;
-        border-radius: 0;
-        background: none;
         cursor: default;
     }
 
     #edges path {
-        stroke: #333;
-        stroke-width: 1.25;
+        stroke: #ffffff;
+        stroke-width: 2;
     }
 
     .node,
     .node.sel {
-        background: #fff;
-        color: #000;
-        border: 1px solid #222;
-        box-shadow: none;
+        background: transparent;
+        color: #ffffff;
+        border: 2px solid #ffffff;
         break-inside: avoid;
-    }
-
-    .node:empty::before {
-        content: none;
     }
 }

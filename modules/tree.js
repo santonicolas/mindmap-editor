@@ -42,16 +42,15 @@ export function layout() {
 
     nodes.forEach(n => {
         if (els[n.id]) {
-            els[n.id].style.left = n.x + 'px';
-            els[n.id].style.top = n.y + 'px';
+            els[n.id].style.cssText += `left: ${n.x}px; top: ${n.y}px;`;
         }
     });
     renderEdges();
 }
 
 export const getTreeSize = () => ({
-    width: Math.max(...nodes.map(n => n.x + (n.w || 0))),
-    height: Math.max(...nodes.map(n => n.y + (n.h || 0))),
+    width: Math.max(0, ...nodes.map(n => n.x + (n.w || 0))),
+    height: Math.max(0, ...nodes.map(n => n.y + (n.h || 0))),
 });
 
 export function renderEdges() {
@@ -91,9 +90,8 @@ export function render() {
 
 export function focusEditingNode() {
     const el = byId('nodes').querySelector('.ed');
-    if (el) {
+    if (el && document.activeElement !== el) {
         el.focus();
-        getSelection().selectAllChildren(el);
     }
 }
 
@@ -123,7 +121,7 @@ export function commitEdit() {
     if (!editingId) return;
     const el = document.querySelector('.node.ed');
     const node = findNode(editingId);
-    if (el && node) node.text = el.innerText.replace(/\n+/g, ' ').trim();
+    if (el && node) node.text = el.innerText.replace(/\s+/g, ' ').trim();
     setEditingId(null);
     render();
 }
@@ -135,9 +133,9 @@ export function startEdit(id) {
     render();
 }
 
-export function addNode(parentId) {
+export function addNode(parentId, text = '') {
     commitEdit();
-    const node = { id: generateId(), parentId, text: '' };
+    const node = { id: generateId(), parentId, text };
     nodes.push(node);
     setSelectedId(node.id);
     setEditingId(node.id);
@@ -145,7 +143,10 @@ export function addNode(parentId) {
 }
 
 export const addChild = () => selectedId && addNode(selectedId);
-export const addSibling = () => findNode(selectedId) && addNode(findNode(selectedId).parentId);
+export const addSibling = () => {
+    const parentId = findNode(selectedId)?.parentId;
+    if (parentId !== undefined) addNode(parentId);
+};
 
 export const collectSubtreeIds = id => [id, ...childrenOf(id).flatMap(kid => collectSubtreeIds(kid.id))];
 
@@ -165,9 +166,8 @@ export function deleteSelected() {
 }
 
 export function newTree() {
-    setNodes([{ id: generateId(), parentId: null, text: 'Tema central' }]);
-    setSelectedId(nodes[0].id);
-    setEditingId(null);
+    setNodes([]);
+    addNode(null, 'Tema central');
 }
 
 export function toCanvasJson() {
@@ -209,7 +209,7 @@ export function fromCanvasJson(text) {
 const STORAGE_KEY = 'arvore-estudo';
 
 export function saveToStorage() {
-    try { localStorage.setItem(STORAGE_KEY, toCanvasJson()); } catch { /* o app continua funcionando */ }
+    try { localStorage.setItem(STORAGE_KEY, toCanvasJson()); } catch { }
 }
 
 export function loadFromStorage() {

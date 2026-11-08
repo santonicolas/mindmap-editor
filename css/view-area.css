@@ -4,9 +4,6 @@
     overflow: hidden;
     touch-action: none;
     cursor: grab;
-    background-image: radial-gradient(var(--neutra1) 2px, transparent 1px);
-    background-size: 24px 24px;
-    margin: 0px 12px 12px 12px;
 }
 
 #view.pan {
@@ -29,8 +26,8 @@
 
 #edges path {
     fill: none;
-    stroke: var(--neutra5);
-    stroke-width: 1.6;
+    stroke: #ffffff;
+    stroke-width: 2;
 }
 
 .node {
@@ -50,22 +47,24 @@
     overflow-wrap: break-word;
     justify-content: center;
     text-align: center;
-    background-color: var(--neutra);
-    border: 2px solid var(--neutra5);
+    border: 2px solid #ffffff;
     font-size: 16px;
+    font-weight: 400;
     line-height: 24px;
     border-radius: 12px;
     padding: 13px 18px;
     overflow: hidden;
-    color: var(--neutra5);
-    caret-color: var(--blue);
+    color: #ffffff;
+    caret-color: #0080F7;
     cursor: pointer;
-    user-select: none
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .node.sel {
-    box-shadow: 0 0 0 2px var(--blue);
-    border: 2px solid var(--neutra);
+    border: 2px solid #0080F7;
 }
 
 .node.ed {
@@ -75,12 +74,18 @@
 }
 
 .node.ed::selection {
-    background-color: var(--blue);
-    color: white;
+    background-color: hsl(209, 100%, 48%, 0.2);
 }
 
 .node:empty::before {
     content: "Novo tópico";
-    color: var(--neutra2);
-    opacity: 1;
+    color: #595959;
+}
+
+.node:empty {
+    border-color: #404040;
+}
+
+.node.sel:empty {
+    border-color: #0080F7;
 }

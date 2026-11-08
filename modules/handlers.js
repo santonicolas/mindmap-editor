@@ -41,7 +41,7 @@ export function setupToolbar() {
             fitToScreen();
             byId('dlg').close();
         } catch (error) {
-            byId('msg').textContent = 'Não foi possível ler este JSON: ' + error.message;
+            byId('msg').textContent = 'Não foi possível ler o JSON: ' + error.message;
         }
     };
 }
@@ -70,7 +70,6 @@ export function setupContextMenu() {
     });
 
     document.addEventListener('pointerdown', event => { if (!menu.contains(event.target)) hide(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') hide(); });
     byId('view').addEventListener('wheel', hide, { passive: true });
 }
 
@@ -82,9 +81,43 @@ export function setupMouse() {
         const nodeEl = event.target.closest('.node');
 
         if (nodeEl) {
-            if (nodeEl.dataset.id === editingId) return;
+            const id = nodeEl.dataset.id;
+            if (id === editingId) return;
+
+            event.preventDefault(); // Impede o comportamento padrão de foco prematuro do navegador
             commitEdit();
-            select(nodeEl.dataset.id);
+            select(id);
+
+            // Adia a abertura da edição para o próximo ciclo de renderização do navegador,
+            // evitando que o DOM seja destruído no meio do evento de ponteiro.
+            setTimeout(() => {
+                startEdit(id);
+
+                const activeEl = document.querySelector(`.node[data-id="${id}"]`);
+                if (activeEl) {
+                    activeEl.focus();
+
+                    // Tenta posicionar o cursor exatamente onde o usuário clicou
+                    const range = document.caretRangeFromPoint
+                        ? document.caretRangeFromPoint(event.clientX, event.clientY)
+                        : null;
+
+                    if (range && activeEl.contains(range.startContainer)) {
+                        const sel = getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    } else {
+                        // Fallback seguro para o final do texto caso a API de coordenadas falhe
+                        const fallbackRange = document.createRange();
+                        fallbackRange.selectNodeContents(activeEl);
+                        fallbackRange.collapse(false);
+                        const sel = getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(fallbackRange);
+                    }
+                }
+            }, 0);
+
             return;
         }
 
@@ -113,11 +146,6 @@ export function setupMouse() {
         view.addEventListener('pointerup', onUp);
     });
 
-    view.addEventListener('dblclick', event => {
-        const id = event.target.closest('.node')?.dataset.id;
-        if (id && id !== editingId) startEdit(id);
-    });
-
     view.addEventListener('wheel', event => {
         event.preventDefault();
         const box = view.getBoundingClientRect();
@@ -136,33 +164,6 @@ export function setupMouse() {
     }, { passive: false });
 
     byId('nodes').addEventListener('input', layout);
-}
-
-export function setupKeyboard() {
-    document.addEventListener('keydown', event => {
-        if (byId('dlg').open) return;
-
-        if (editingId) {
-            if (event.key === 'Enter') { event.preventDefault(); commitEdit(); }
-            else if (event.key === 'Escape') commitEdit();
-            else if (event.key === 'Tab') { event.preventDefault(); commitEdit(); addChild(); }
-            return;
-        }
-
-        if (event.target.closest('button, select')) return;
-
-        const shortcuts = {
-            Tab: addChild,
-            Enter: addSibling,
-            Delete: deleteSelected,
-            Backspace: deleteSelected,
-            F2: () => startEdit(selectedId),
-        };
-        if (shortcuts[event.key]) {
-            event.preventDefault();
-            shortcuts[event.key]();
-        }
-    });
 }
 
 export function setupPrint() {

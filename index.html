@@ -4,37 +4,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Árvore de Estudo</title>
+  <title>Mindmap Editor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
   <script type="module" src="modules/main.js"></script>
-  <script type="module" src="modules/themeLogic.js"></script>
   <style id="pg"></style>
 </head>
 
 <body>
   <div id="bar">
-    <button id="bFit">Ajustar à tela<img src="icons/fit-screen.svg"></button>
-    <span class="sp"></span>
-    <button id="theme-toggle" aria-label="Alternar entre tema claro e escuro"><img src="icons/moon.svg"></button>
-    <button id="bJson"><img src="icons/json.svg"></button>
-    <button id="bPdf" class="pri"><img src="icons/pdf-icon.svg"></button>
-    <button id="bNew">Nova árvore<img src="icons/create.svg"></button>
+    <button id="bFit">Ajustar<img src="icons/fit.svg"></button>
+    <div class="bar-right">
+      <button id="bJson"><img src="icons/json.svg"></button>
+      <button id="bPdf" class="pri"><img src="icons/pdf.svg"></button>
+      <button id="bNew">Nova árvore<img src="icons/create.svg"></button>
+    </div>
   </div>
 
   <div id="view" tabindex="-1">
     <div id="stage"><svg id="edges"></svg>
       <div id="nodes"></div>
-    </div>
-    <div id="hint">
-      <span class="key">Tab</span> Novo filho
-      <span class="key">Enter</span> Novo irmão
-      <span class="key">Delete</span> Exclui membro
-      <span class="key">F2</span> ou dois cliques para Editar
     </div>
   </div>
 
@@ -48,13 +41,13 @@
 
     <div class="row">
       <button id="bCopy">Copiar</button>
-      <button id="bLoad" class="pri">Carregar</button>
+      <button id="bLoad" class="pri">Carregar JSON</button>
     </div>
   </dialog>
 
   <div id="menu" hidden>
-    <button data-act="child">Adicionar filho</button>
-    <button data-act="sibling">Adicionar irmão</button>
+    <button data-act="child">Criar filho</button>
+    <button data-act="sibling">Criar irmão</button>
     <button data-act="delete">Excluir membro</button>
   </div>
 </body>
