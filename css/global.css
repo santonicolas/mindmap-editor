@@ -25,3 +25,11 @@ body {
 button {
     transition: background-color 0.14s, border-color 0.14s;
 }
+
+@media (max-width: 495px) {
+    body {
+        height: 100vh;
+        width: 100vw;
+
+    }
+}

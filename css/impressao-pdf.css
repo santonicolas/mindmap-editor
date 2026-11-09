@@ -10,6 +10,7 @@
         display: block;
         height: auto;
         background: #1E1E1E;
+        margin: 1rem;
     }
 
     #bar,
@@ -35,7 +36,7 @@
     .node.sel {
         background: transparent;
         color: #ffffff;
-        border: 2px solid #ffffff;
+        border: 2px solid #ffffff !important;
         break-inside: avoid;
     }
 }

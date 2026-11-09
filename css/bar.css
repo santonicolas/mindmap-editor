@@ -56,7 +56,6 @@ button::selection {
     border-color: hsl(0, 0%, 12%, 0.75);
 }
 
-
 .bar-right {
     display: flex;
     flex-wrap: nowrap;
@@ -100,4 +99,51 @@ button::selection {
 #bar #bNew:active {
     background-color: hsl(0, 47%, 8%, 0.75);
     border-color: hsl(359, 50%, 28%, 0.75);
+}
+
+@media (max-width: 495px) {
+    #bar {
+        gap: 8px;
+        padding: 10px;
+        justify-content: space-between;
+        bottom: 8px;
+        width: calc(100% - 16px);
+    }
+
+    #bar button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .bar-right {
+        gap: 8px;
+    }
+
+    #bar #bJson, #bar #bPdf {
+        padding: 10px;
+    }
+
+    #bar #bNew {
+        padding: 10px 10px 10px 14px;
+    }
+
+    #bar #bFit {
+        gap: 0px;
+        font-size: 0px;
+    }
+}
+
+
+@media (max-width: 320px) {
+    #bar {
+        justify-content: unset;
+        padding: 8px;
+        width: fit-content;
+    }
+
+    #bar #bNew {
+        font-size: 0px;
+        padding: 10px 10px 10px 10px;
+        gap: 0px;
+    }
 }
