@@ -94,10 +94,9 @@ export function setupMouse() {
                 startEdit(id);
 
                 const activeEl = document.querySelector(`.node[data-id="${id}"]`);
-                if (activeEl) {
+                if (activeEl && document.activeElement !== activeEl) {
                     activeEl.focus();
 
-                    // Tenta posicionar o cursor exatamente onde o usuário clicou
                     const range = document.caretRangeFromPoint
                         ? document.caretRangeFromPoint(event.clientX, event.clientY)
                         : null;
@@ -107,7 +106,6 @@ export function setupMouse() {
                         sel.removeAllRanges();
                         sel.addRange(range);
                     } else {
-                        // Fallback seguro para o final do texto caso a API de coordenadas falhe
                         const fallbackRange = document.createRange();
                         fallbackRange.selectNodeContents(activeEl);
                         fallbackRange.collapse(false);
@@ -196,3 +194,13 @@ export function setupPrint() {
         updateCamera();
     });
 }
+
+
+const textarea = document.getElementById('ta');
+
+textarea.addEventListener('pointerdown', function () {
+    if (this.hasAttribute('readonly')) {
+        this.removeAttribute('readonly');
+        this.focus();
+    }
+});
